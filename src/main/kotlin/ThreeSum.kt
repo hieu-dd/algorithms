@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/3sum
+
 fun threeSum(a: IntArray): List<List<Int>> {
     val result = mutableListOf<List<Int>>()
     val nums = a.sortedBy { it }

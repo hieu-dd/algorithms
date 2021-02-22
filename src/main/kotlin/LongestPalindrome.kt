@@ -1,5 +1,4 @@
-import java.lang.Integer.MAX_VALUE
-
+// https://leetcode.com/problems/longest-palindromic-substring/
 fun longestPalindrome(s: String): String {
     if (s.isBlank()) return s
     var data = s.toCharArray()
