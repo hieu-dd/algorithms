@@ -1,10 +1,12 @@
+// https://leetcode.com/problems/combination-sum/
+
 fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {
     var result = listOf<List<Int>>()
     for (i in candidates.indices) {
         val dataFind = candidates.toMutableList().subList(i, candidates.size).toIntArray()
         result = result + findOneCombination(dataFind, target)
     }
-    return result
+    return result.filter { it.sum() == target }
 }
 
 fun findOneCombination(candidates: IntArray, target: Int): List<List<Int>> {
@@ -18,17 +20,24 @@ fun findOneCombination(candidates: IntArray, target: Int): List<List<Int>> {
         val data = mutableListOf<Int>()
         while ((i * first) <= target) {
             data.add(first)
-            val newCans =
-                if (candidates.size == 1) intArrayOf() else candidates.toMutableList().subList(1, candidates.size)
-                    .toIntArray()
-            val r = (data + findOneCombination(newCans, target - i * first))
-            result.add(r as List<Int>)
-            print(i)
+            if (i * first == target) result.add(data)
+            else {
+                var j = 1
+                do {
+                    val newCans =
+                        if (candidates.size == 1) intArrayOf() else candidates.toMutableList()
+                            .subList(j, candidates.size)
+                            .toIntArray()
+                    findOneCombination(newCans, target - i * first).forEach {
+                        result.add(data + it)
+                    }
+                    j++
+                } while (j <= candidates.size)
+            }
             i++
         }
         return result
     }
-
 }
 
 fun main() {
