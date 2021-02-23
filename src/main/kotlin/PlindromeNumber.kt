@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/palindrome-number/
 fun isPalindrome(x: Int): Boolean {
     if (x < 0) return false
     else {
@@ -5,8 +6,8 @@ fun isPalindrome(x: Int): Boolean {
         var i = 0
         var j = chars.size - 1
         var result = true
-        while (i<=j){
-            if(chars[i]==chars[j]){
+        while (i <= j) {
+            if (chars[i] == chars[j]) {
                 i++
                 j--
             } else {
