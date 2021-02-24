@@ -1,8 +1,11 @@
 package model
 // https://leetcode.com/problems/add-two-numbers/
 
-class ListNode(var `val`: Int) {
+class ListNode(var `val`: Int) : Cloneable {
     var next: ListNode? = null
+    override fun clone(): ListNode {
+        return super.clone() as ListNode
+    }
 }
 
 fun pushTop(a: ListNode?, `val`: Int): ListNode = ListNode(`val`).apply { next = a }
