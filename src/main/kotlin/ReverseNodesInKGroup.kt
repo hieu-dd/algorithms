@@ -16,12 +16,13 @@ fun reverseKGroup(head: ListNode?, k: Int): ListNode? {
     size = count - 1
     count = 1
     while (count <= size) {
-        result = if (count % k == 1 && count + k - 1 <= size) {
-            pushBottom(result, hashVal[count + k - 1]!!)
-        } else if (count % k == 0) {
-            pushBottom(result, hashVal[count - k + 1]!!)
+        val surplus = count % k
+        if (surplus == 0) {
+            result = pushBottom(result, hashVal[count - k + 1]!!)
+        } else if (count - surplus + k <= size) {
+            result = pushBottom(result, hashVal[count - 2 * surplus + k + 1]!!)
         } else {
-            pushBottom(result, hashVal[count]!!)
+            result = pushBottom(result, hashVal[count]!!)
         }
         count++
     }
